@@ -274,7 +274,7 @@ namespace 固件转换
         }
         private void FrameParameSet(UInt32 StartAddress)
         {
-            UInt32 LoadAddress = MapFindParame(HexDocumentAddress, "FDI_FLASH_PARAM_CRC");//Lighting_Frame
+            UInt32 LoadAddress = MapFindParame(HexDocumentAddress, "Lighting_Frame");//Lighting_Frame
             UInt32 StarttoLoad_Offset = LoadAddress - StartAddress;
             Hex2Bin();
             BinCRC_Calculate();
