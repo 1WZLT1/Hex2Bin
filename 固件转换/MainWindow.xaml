@@ -15,13 +15,13 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Label Content="HEX固件地址:" Margin="0,5,0,0"></Label>
-            <TextBox Margin="104,5,67,5" Text="{Binding HexDocumentAddress}" TextAlignment="Center"/>
+            <TextBox Margin="104,5,67,5" Text="{Binding HexDocumentAddress}"/>
             <Button Content="选择"  Command="{Binding DocumentAddressSelect}" Margin="738,5,15,5"/>
         </Grid>
         <Grid Grid.Row="1">
             <Label Content="Bin文件存放地址:" Margin="0,5,0,0"></Label>
-            <TextBox Margin="105,5,68,5" Text="{Binding BinDocumentAddress}" TextAlignment="Center"/>
-            <Button Content="选择" Command="{Binding DocumentAddressSelect}" Margin="738,5,15,5" />
+            <TextBox Margin="105,5,68,5" Text="{Binding BinDocumentAddress}" />
+            <Button Content="选择" Command="{Binding BinDocumentAddressSelect}" Margin="738,5,15,5" />
         </Grid>
         <Grid Grid.Row="2" >
             <Button Content="转换"  Command="{Binding ConvertFirmwareCommand}" Margin="640,0,90,0"/>

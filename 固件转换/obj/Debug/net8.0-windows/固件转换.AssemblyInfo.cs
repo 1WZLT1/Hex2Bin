@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("固件转换")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8ad416dd9053ca837d52a462f989480a9a8a0637")]
 [assembly: System.Reflection.AssemblyProductAttribute("固件转换")]
 [assembly: System.Reflection.AssemblyTitleAttribute("固件转换")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
