@@ -251,28 +251,41 @@ namespace 固件转换
                 UseShellExecute = false,
                 CreateNoWindow = true
             };
-            Process.Start(info);
+
+            using (Process process = Process.Start(info))
+            {
+                process.WaitForExit();
+            }
         }
 
+        uint CRC32_Num = 0;
         private void BinCRC_Calculate()
         {
             string BinDoc  = Path.ChangeExtension(HexDocumentAddress, ".bin");
 
             byte[] binData = File.ReadAllBytes(BinDoc);
 
-            byte[] crcData = new byte[binData.Length - 0x800];
-            Array.Copy(binData, 0x800, crcData, 0, crcData.Length);
+            byte[] crcData = new byte[binData.Length];
+            Array.Copy(binData, 0, crcData, 0, crcData.Length);
 
-            uint CRC32_Num = CRC32_Table(crcData, binData.Length);
+            CRC32_Num = CRC32_Table(crcData, binData.Length);
 
             Debug.WriteLine($"CRC32_Num = 0x{CRC32_Num:X8}");
         }
         private void FrameParameSet(UInt32 StartAddress)
         {
             UInt32 LoadAddress = MapFindParame(HexDocumentAddress, "FDI_FLASH_PARAM_CRC");//Lighting_Frame
-            UInt32 StarttoLoad_Offset = StartAddress - LoadAddress;
+            UInt32 StarttoLoad_Offset = LoadAddress - StartAddress;
             Hex2Bin();
             BinCRC_Calculate();
+
+            string BinDoc = Path.ChangeExtension(HexDocumentAddress, ".bin");
+            string LtDoc  = Path.ChangeExtension(BinDoc, ".lt");
+            byte[] binData = File.ReadAllBytes(BinDoc);
+
+            byte[] crcBytes = BitConverter.GetBytes(CRC32_Num);
+            Array.Copy(crcBytes, 0, binData, (int)StarttoLoad_Offset, 4);
+            File.WriteAllBytes(LtDoc, binData);
         }
         void ConvertFirmwareCommand_Function()
         {
